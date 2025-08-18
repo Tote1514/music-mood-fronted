@@ -1,3 +1,11 @@
+.page-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    min-height: 100vh;
+}
+
 .login-form{
     display: flex;
     flex-direction: column;
@@ -11,10 +19,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin: auto;
 }
 
 .input-container {
