@@ -1,13 +1,17 @@
 
 :root {
-  --cor-fundo: #fff;
-  --cor-texto: #111827;
-  --cor-borda: #ccc;
-  --cor-primaria: #3B82F6;
-  --cor-secundaria: #1E40AF;
+  --cor-fundo: #F9FAFB;              /* branco azulado bem claro, para áreas neutras */
+  --cor-fundo-secundario: #A5B4FC;   /* lavanda suave que combina com o roxo do fundo */
+  --cor-texto: #0F172A;              /* quase preto azulado, mais moderno e legível */
+  --cor-borda: #CBD5E1;              /* cinza frio e suave */
+  --cor-primaria: #3B82F6;           /* azul vibrante principal (já perfeito) */
+  --cor-secundaria: #6366F1;         /* roxo-azulado que casa com o gradiente */
+  --cor-destaque: #1E3A8A;           /* azul profundo para elementos de foco ou hover */
+
 
   font-family: 'Inter', 'Roboto', sans-serif;
   line-height: 1.5;
+  font-size: 16px;
   font-weight: 400;
 
   color-scheme: light dark;
@@ -31,15 +35,19 @@ a:hover {
 
 body {
   margin: 0;
-  min-width: 320px;
+
   min-height: 100vh;
-  max-width: 100%;
+  background-image: url(https://sdmntprwestcentralus.oaiusercontent.com/files/00000000-0f90-61fb-a736-f7a4fd01ef76/raw?se=2025-10-06T21%3A06%3A04Z&sp=r&sv=2024-08-04&sr=b&scid=a9b6d889-2dd5-5f17-b9ea-49096cf1c6bd&skoid=0da8417a-a4c3-4a19-9b05-b82cee9d8868&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-10-06T06%3A50%3A15Z&ske=2025-10-07T06%3A50%3A15Z&sks=b&skv=2024-08-04&sig=3gxwjqfCAxpyAzgTv9ss1x8T56tbcUL1vuFKArQNDGo%3D);
+  background-repeat: repeat-y;     
+  background-position: center top;  
+  background-size: 100% auto;     
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
-
+  color : var(--cor-fundo);
+  text-align: center;
 }
 
 button {
@@ -49,7 +57,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: var(--cor-primaria);
+  background-color: var(--cor-destaque);
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -66,19 +74,6 @@ input {
   border: 1px solid var(--cor-borda);
   color: var(--cor-texto );
   border-radius: 4px;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
 
 

@@ -1,44 +1,33 @@
-.page-layout {
+main {
     display: flex;
     flex-direction: column;
-    height: 100vh;
     width: 100%;
-    min-height: 100vh;
+    font-size: large;
 }
 
-.login-form{
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 100%;
+
+.features-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));    
+    gap: 20px;
+    padding: 20px;
 }
 
-.login-container {
+.feature {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: auto;
+    text-align: center;
+    margin: 20px;
 }
 
-.input-container {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    width: 100%;
+p {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 800;
 }
 
-input {
-    padding: 8px;
-    font-size: 16px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.password-label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+button {
+    margin: 10px auto;
+    display: block;
 }
