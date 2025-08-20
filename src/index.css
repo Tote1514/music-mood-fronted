@@ -37,10 +37,8 @@ body {
   margin: 0;
 
   min-height: 100vh;
-  background-image: url(https://sdmntprwestcentralus.oaiusercontent.com/files/00000000-0f90-61fb-a736-f7a4fd01ef76/raw?se=2025-10-06T21%3A06%3A04Z&sp=r&sv=2024-08-04&sr=b&scid=a9b6d889-2dd5-5f17-b9ea-49096cf1c6bd&skoid=0da8417a-a4c3-4a19-9b05-b82cee9d8868&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-10-06T06%3A50%3A15Z&ske=2025-10-07T06%3A50%3A15Z&sks=b&skv=2024-08-04&sig=3gxwjqfCAxpyAzgTv9ss1x8T56tbcUL1vuFKArQNDGo%3D);
-  background-repeat: repeat-y;     
-  background-position: center top;  
-  background-size: 100% auto;     
+  background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+  background-attachment: fixed;
 }
 
 h1 {
@@ -70,9 +68,12 @@ button:focus-visible {
 }
 
 input {
-  background-color: var(--cor-fundo);
+  background-color: white;
   border: 1px solid var(--cor-borda);
   color: var(--cor-texto );
+  padding: 0.5em 0.75em;
+  font-size: large;
+  font-weight: 600;
   border-radius: 4px;
 }
 
