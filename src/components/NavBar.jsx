@@ -9,7 +9,7 @@ export default function NavBar({links}) {
                 <h2>MusicMood</h2>
             </div>
             <ul>
-                {links.map(link => (
+                {links?.map(link => (
                     <li key={link.path}>
                         <a href={link.path}>
                             {link.icon && <span className="icon">{link.icon}</span>}

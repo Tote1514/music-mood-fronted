@@ -6,11 +6,24 @@ import { FaSpotify } from "react-icons/fa";
 import NavBar from "../components/NavBar";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+        email: '',
+        senha: ''
+    });
 
+    const handleChange = (e) => {
+        const { id, value } = e.target;
+        setFormData(prevState => ({
+            ...prevState,
+            [id]: value
+        }));
+    };
   const handleSubmit = (e) => {
     e.preventDefault();
+    setFormData({
+      email: '',
+      senha: ''
+    });
     
   };
 
@@ -31,8 +44,8 @@ export default function Login() {
                   name="email" 
                   required
                   placeholder="Digite seu email"
-                  value={email} 
-                  onChange={(e) => setEmail(e.target.value)} />
+                  value={formData.email}
+                  onChange={handleChange} />
           </div>
           <div className="input-container">
             <label className="password-label" 
@@ -42,13 +55,12 @@ export default function Login() {
                       <a href="#">Esqueceu a senha?</a>
                     </small>
             </label>
-            <input value={password} 
-                  id="password" 
-                  type="password" 
-                  name="password" 
-                  required
-                  placeholder="Digite sua senha"
-                  onChange={(e) => setPassword(e.target.value)} />
+            <input type="password" 
+                           id="senha" 
+                           placeholder="Senha"
+                           value={formData.senha}
+                           onChange={handleChange}
+                           required />
           </div>
           <button type="submit"
                   onClick={handleSubmit}>
