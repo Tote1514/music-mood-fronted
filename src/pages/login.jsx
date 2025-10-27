@@ -10,13 +10,12 @@ import { MdPlaylistAdd } from "react-icons/md";
 import NavBar from "../components/NavBar";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
+
+  const handleOnClick = () => {
+    window.location.href = "http://localhost:8000/auth/login";
   };
+
 
   return (
     <>
@@ -27,7 +26,7 @@ export default function Login() {
           <p>
             Faça login com a sua conta do Spotify para conversar com o assistente e receber recomendações personalizadas de músicas.
           </p>
-          <button className="spotify-login"><FaSpotify /> Login com Spotify</button>
+          <button className="spotify-login" onClick={handleOnClick}><FaSpotify /> Login com Spotify</button>
         </div>
         <div className="features-container container">
           <div className="feature">
