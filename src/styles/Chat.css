@@ -10,6 +10,11 @@
   padding: 1rem;
   height: calc(100vh - 230px);
   overflow-y: auto;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  scrollbar-width: thin; 
+  scrollbar-color: var(--cor-primaria) var(--cor-primaria);
 }
 
 
