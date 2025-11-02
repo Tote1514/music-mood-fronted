@@ -1,4 +1,6 @@
 import NavBar from "../components/NavBar"
+import GenerosInput from "../pages/GenerosInput"
+
 import { FaUser } from "react-icons/fa"
 import "../styles/Chat.css"
 import { useState } from "react"
@@ -28,6 +30,7 @@ export default function Chat() {
     <div>
       <NavBar links={links} />
       <div className="chat-container">
+        <GenerosInput />
         {messages.map((msg, index) => (
           <div key={index} 
                 className={`message ${msg.sender}`}>
