@@ -1,15 +1,29 @@
 import NavBar from "../components/NavBar"
 import GenerosInput from "../pages/GenerosInput"
+import { useUserContext } from "../contex/UserContext"
 
 import { FaUser } from "react-icons/fa"
 import "../styles/Chat.css"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export default function Chat() {
   const [input, setInput] = useState("")
   const [messages, setMessages] = useState([])
 
   const links = [{ path: "/profile", label: "", icon: <FaUser /> }]
+
+  const { updateUser, user } = useUserContext()
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const displayName = params.get("display_name")
+    if (displayName)
+    {
+      updateUser({ name: displayName.split(" ").at(0) })
+      window.history.replaceState({}, document.title, "/chat")
+    }
+
+  }, [])
 
   const handleSend = (e) => {
     e.preventDefault()
@@ -30,7 +44,7 @@ export default function Chat() {
     <div>
       <NavBar links={links} />
       <div className="chat-container">
-        <GenerosInput />
+        <GenerosInput displayName={user.name} />
         {messages.map((msg, index) => (
           <div key={index} 
                 className={`message ${msg.sender}`}>
@@ -45,7 +59,10 @@ export default function Chat() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
-        <button type="submit">Enviar</button>
+        <button type="submit" 
+                disabled={!user.hasSelectedGenres}>
+          Enviar
+        </button>
       </form>
     </div>
   )
