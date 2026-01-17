@@ -58,6 +58,7 @@ export default function Chat() {
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          disabled={!user.hasSelectedGenres}
         />
         <button type="submit" 
                 disabled={!user.hasSelectedGenres}>

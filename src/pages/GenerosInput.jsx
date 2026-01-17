@@ -37,7 +37,7 @@ export default function GenerosInput() {
   return (
     <div className="generos-input-container">
       <form onSubmit={handleSubmit}>
-        <h2>Me diz que gêneros você gosta, {displayName}? 🙂</h2>
+        <h2>Pra começar, quais estilos musicais você mais gosta de ouvir, {displayName}? 🎧</h2>
         {user.hasSelectedGenres ?
           (user.generos.length > 0 ?
             <p>Gêneros selecionados🎵 : {user.generos.join(", ")}</p>
@@ -46,7 +46,10 @@ export default function GenerosInput() {
         <Select
           isMulti
           name="generos"
+          className="react-select-container"
+          classNamePrefix="react-select"
           options={generos}
+          closeMenuOnSelect={false}
           onChange={handleChange}
         />}
         <button type="submit"
