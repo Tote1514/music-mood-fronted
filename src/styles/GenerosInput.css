@@ -10,6 +10,7 @@
     animation: fadeIn 0.2s ease-in;
     background: var(--cor-secundaria);
     color: #fff;
+    text-align: center;
     align-self: flex-start;
     border-bottom-left-radius: 4px;
 }
@@ -17,7 +18,6 @@
 .react-select-container {
     width: 100%;
     color : black;
-    text-align: center;
 }
 
 .generos-input-container button {

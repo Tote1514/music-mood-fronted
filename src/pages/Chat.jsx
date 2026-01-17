@@ -1,5 +1,5 @@
 import NavBar from "../components/NavBar"
-import GenerosInput from "../pages/GenerosInput"
+import GenerosInput from "../components/GenerosInput"
 import { useUserContext } from "../contex/UserContext"
 
 import { FaUser } from "react-icons/fa"
@@ -45,10 +45,15 @@ export default function Chat() {
       <NavBar links={links} />
       <div className="chat-container">
         <GenerosInput displayName={user.name} />
+        {user.hasSelectedGenres && (
+          <div className="message bot">
+            <h3>E hoje, como você está se sentindo? Pode falar do seu jeito 🙂</h3>
+          </div>
+          )}
         {messages.map((msg, index) => (
           <div key={index} 
                 className={`message ${msg.sender}`}>
-            <span>{msg.text}</span>
+            <h3>{msg.text}</h3>
           </div>
         ))}
       </div>

@@ -53,7 +53,7 @@ export default function GenerosInput() {
           onChange={handleChange}
         />}
         <button type="submit"
-                disabled={user.hasSelectedGenres}>
+                disabled={(user.generos.length > 0) || generosSelected.length === 0}>
                   Enviar 🎶
         </button>
       </form>
