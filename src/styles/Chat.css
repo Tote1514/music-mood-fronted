@@ -49,8 +49,8 @@
 }
 
 .message.bot {
-  background: var(--cor-secundaria);
-  color: #fff;
+  background-color: var(--cor-balao);
+  color: var(--cor-texto);
   align-self: flex-start;
   border-bottom-left-radius: 4px;
 }

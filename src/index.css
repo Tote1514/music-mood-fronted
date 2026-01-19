@@ -7,6 +7,8 @@
   --cor-primaria: #3B82F6;           /* azul vibrante principal (já perfeito) */
   --cor-secundaria: #6366F1;         /* roxo-azulado que casa com o gradiente */
   --cor-destaque: #1E3A8A;           /* azul profundo para elementos de foco ou hover */
+  --cor-balao: #F1F5FF;;
+
 
 
   font-family: 'Inter', 'Roboto', sans-serif;

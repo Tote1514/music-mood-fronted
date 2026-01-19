@@ -8,8 +8,8 @@
     word-wrap: break-word;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     animation: fadeIn 0.2s ease-in;
-    background: var(--cor-secundaria);
-    color: #fff;
+    background-color: var(--cor-balao);
+    color: var(--cor-texto);
     text-align: center;
     align-self: flex-start;
     border-bottom-left-radius: 4px;
