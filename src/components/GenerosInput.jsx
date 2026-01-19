@@ -35,7 +35,7 @@ export default function GenerosInput() {
   };
 
   return (
-    <div className="generos-input-container">
+    <div className="message bot generos-input">
       <form onSubmit={handleSubmit}>
         <h2>Pra começar, quais estilos musicais você mais gosta de ouvir, {displayName}? 🎧</h2>
         {user.hasSelectedGenres ?

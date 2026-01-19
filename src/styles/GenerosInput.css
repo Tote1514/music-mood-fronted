@@ -1,18 +1,10 @@
-.generos-input-container {
+.message.generos-input {
     padding: 0.8rem 1rem;
-    border-radius: 18px;
     width:40%;
-    max-width: 65%;
     font-size: 1rem;
     line-height: 1.4;
     word-wrap: break-word;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 0.2s ease-in;
-    background-color: var(--cor-balao);
-    color: var(--cor-texto);
     text-align: center;
-    align-self: flex-start;
-    border-bottom-left-radius: 4px;
 }
 
 .react-select-container {
@@ -20,13 +12,13 @@
     color : black;
 }
 
-.generos-input-container button {
+.message.generos-input button {
     padding: 0.5rem;
     font-size: 1rem;
     width: 100%;
 }   
 
-.generos-input-container button:disabled {
+.message.generos-input button:disabled {
     background-color: grey;
     cursor: not-allowed;
 }

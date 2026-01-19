@@ -4,7 +4,7 @@ import Song from "./Song"
 
 export default function Playlist({playlist}) {
     return (
-        <div className="playlist-container">
+        <div className="message bot playlist">
             <h2>Sua Playlist Personalizada</h2>
             {playlist.length === 0 ? (
                 <p>Nenhuma música na playlist.</p>
