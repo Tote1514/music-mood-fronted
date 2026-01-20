@@ -6,7 +6,7 @@ import { useUserContext } from "../contex/UserContext"
 
 import { FaUser } from "react-icons/fa"
 import "../styles/Chat.css"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 
 export default function Chat() {
   const [input, setInput] = useState("")
@@ -16,6 +16,8 @@ export default function Chat() {
   const links = [{ path: "/profile", label: "", icon: <FaUser /> }]
 
   const { updateUser, user } = useUserContext()
+  const bottomRef = useRef(null);
+
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
@@ -27,6 +29,10 @@ export default function Chat() {
     }
 
   }, [])
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, loading]);
 
   const handleSend = (e) => {
     e.preventDefault()
@@ -125,6 +131,8 @@ export default function Chat() {
         ))}
         {loading && <LoadingMessage />}
         {user.hasSelectedGenres && <Playlist playlist={playlist} />}
+        {/* Âncora de scroll */}
+        <div ref={bottomRef} />
       </div>
       <form className="chat-input" 
             onSubmit={handleSend}>
