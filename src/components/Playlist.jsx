@@ -13,6 +13,7 @@ export default function Playlist({playlist}) {
                     <Song song={song} />
                 ))
             )}
+            <button>Criar Playlist</button>
         </div>
     )
 }
