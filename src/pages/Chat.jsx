@@ -1,6 +1,7 @@
 import NavBar from "../components/NavBar"
 import GenerosInput from "../components/GenerosInput"
 import Playlist from "../components/Playlist"
+import LoadingMessage from "../components/LoadingMessage"
 import { useUserContext } from "../contex/UserContext"
 
 import { FaUser } from "react-icons/fa"
@@ -10,6 +11,7 @@ import { useState, useEffect } from "react"
 export default function Chat() {
   const [input, setInput] = useState("")
   const [messages, setMessages] = useState([])
+  const [loading, setLoading] = useState(false)
 
   const links = [{ path: "/profile", label: "", icon: <FaUser /> }]
 
@@ -34,6 +36,12 @@ export default function Chat() {
     setMessages((prev) => [...prev, { text: input, sender: "user" }])
 
     setInput("")
+
+    // Simula resposta do bot
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false) 
+    }, 15000)
   }
 
   // Mockando uma playlist para demonstração
@@ -115,6 +123,7 @@ export default function Chat() {
             <h3>{msg.text}</h3>
           </div>
         ))}
+        {loading && <LoadingMessage />}
         {user.hasSelectedGenres && <Playlist playlist={playlist} />}
       </div>
       <form className="chat-input" 
