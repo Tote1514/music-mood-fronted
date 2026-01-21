@@ -3,6 +3,7 @@ import GenerosInput from "../components/GenerosInput"
 import Playlist from "../components/Playlist"
 import LoadingMessage from "../components/LoadingMessage"
 import { useUserContext } from "../contex/UserContext"
+import { getRecommendations } from "../api/musicApi"
 
 import { FaUser } from "react-icons/fa"
 import "../styles/Chat.css"
@@ -34,7 +35,7 @@ export default function Chat() {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, loading]);
 
-  const handleSend = (e) => {
+  const handleSend = async (e) => {
     e.preventDefault()
     if (input.trim() === "") return
 
@@ -43,11 +44,9 @@ export default function Chat() {
 
     setInput("")
 
-    // Simula resposta do bot
-    setLoading(true)
-    setTimeout(() => {
-      setLoading(false) 
-    }, 15000)
+    //setLoading(true)
+    //const playlist = await getRecommendations(input, user.selectedGenres)
+    //setLoading(false)
   }
 
   // Mockando uma playlist para demonstração

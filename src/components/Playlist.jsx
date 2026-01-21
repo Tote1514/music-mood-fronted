@@ -1,8 +1,17 @@
 import "../styles/Playlist.css"
 
+import { createPlaylist } from "../api/musicApi"
+
 import Song from "./Song"
 
 export default function Playlist({playlist}) {
+
+    const handleCreatePlaylist = async () => {
+        const trackUris = playlist.map(song => song.uri)
+        const playlistUrl = await createPlaylist("Minha Playlist", trackUris);
+        window.open(playlistUrl, "_blank");
+    }
+
     return (
         <div className="message bot playlist">
             <h2>Sua Playlist Personalizada</h2>
@@ -13,7 +22,7 @@ export default function Playlist({playlist}) {
                     <Song song={song} />
                 ))
             )}
-            <button>Criar Playlist</button>
+            <button onClick={handleCreatePlaylist}>Criar Playlist</button>
         </div>
     )
 }

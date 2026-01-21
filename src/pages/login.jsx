@@ -1,7 +1,5 @@
 import "../styles/login.css";
 
-import { useState } from "react";
-
 import { FaSpotify } from "react-icons/fa";
 import { CiChat1 } from "react-icons/ci";
 import { FaSmile } from "react-icons/fa";
@@ -13,7 +11,7 @@ export default function Login() {
 
 
   const handleOnClick = () => {
-    window.location.href = "http://localhost:8000/auth/login";
+    window.location.href = `${import.meta.env.VITE_API_BASE_URL}/auth/spotify`
   };
 
 
