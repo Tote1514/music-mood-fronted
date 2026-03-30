@@ -11,7 +11,7 @@ export default function Login() {
 
 
   const handleOnClick = () => {
-    window.location.href = `${import.meta.env.VITE_API_BASE_URL}/auth/spotify`
+    window.location.href = `${import.meta.env.VITE_API_BASE_URL}/auth/login`
   };
 
 

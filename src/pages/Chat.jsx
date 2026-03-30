@@ -3,7 +3,7 @@ import GenerosInput from "../components/GenerosInput"
 import Playlist from "../components/Playlist"
 import LoadingMessage from "../components/LoadingMessage"
 import { useUserContext } from "../contex/UserContext"
-import { getRecommendations } from "../api/musicApi"
+import { getAccessToken, getRecommendations, getUserProfile } from "../api/musicApi"
 
 import { FaUser } from "react-icons/fa"
 import "../styles/Chat.css"
@@ -21,14 +21,24 @@ export default function Chat() {
 
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search)
-    const displayName = params.get("display_name")
-    if (displayName)
-    {
-      updateUser({ name: displayName.split(" ").at(0) })
-      window.history.replaceState({}, document.title, "/chat")
+    const fetchUser = async () => {
+      try {
+        const displayName = await getAccessToken().
+        then(token => {
+          console.log("Token de acesso:", token)
+          return getUserProfile(token)
+        });
+        console.log("Usuário:", displayName)
+        if (displayName) {
+          updateUser({ name: displayName.split(" ").at(0) })
+        }
+      } catch (error) {
+        console.error("Erro ao buscar usuário:", error)
+      }
+
     }
 
+    fetchUser()
   }, [])
 
   useEffect(() => {
