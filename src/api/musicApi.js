@@ -49,13 +49,14 @@ export async function getAccessToken() {
 }
 
 
-export async function createPlaylist(name, tracks){
-    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/create-playlist`, {
+export async function createPlaylist(name, description, track_uris){
+    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/playlist`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, tracks }),
+        credentials: "include",
+        body: JSON.stringify({ name, description, track_uris }),
     });
 
     if (!response.ok) {
@@ -63,5 +64,5 @@ export async function createPlaylist(name, tracks){
     }
 
     const data = await response.json();
-    return data.playlistUrl;
+    return data.url;
 }
