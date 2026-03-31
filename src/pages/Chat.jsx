@@ -138,7 +138,7 @@ export default function Chat() {
             <h3>{msg.text}</h3>
           </div>
         ))}
-        {loading && <LoadingMessage />}
+        {loading && <LoadingMessage text="Entendendo seu humor e preparando suas recomendações musicais" />}
         {user.hasSelectedGenres && <Playlist playlist={playlist} />}
         {/* Âncora de scroll */}
         <div ref={bottomRef} />
