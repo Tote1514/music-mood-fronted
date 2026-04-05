@@ -7,6 +7,7 @@ export const UserProvider = ({ children }) => {
         name: "",
         generos: [],
         hasSelectedGenres: false,
+        hasSentText: false,
     }); 
 
     const updateUser = (newUserData) => {
@@ -21,6 +22,7 @@ export const UserProvider = ({ children }) => {
             name: "",
             generos: [],
             hasSelectedGenres: false,
+            hasSentText: false,
         });
     }
 

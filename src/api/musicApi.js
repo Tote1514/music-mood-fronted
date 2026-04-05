@@ -66,3 +66,21 @@ export async function createPlaylist(name, description, track_uris){
     const data = await response.json();
     return data.url;
 }
+
+export async function getMoodsFromText(text){
+    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/analysis`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ text }),
+    });
+
+    if (!response.ok) {
+        throw new Error("Failed to analyze text");
+    }
+
+    const data = await response.json();
+    console.log("Moods analisados:", data);
+    return data;
+}

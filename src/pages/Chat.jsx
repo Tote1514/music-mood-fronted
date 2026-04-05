@@ -3,16 +3,18 @@ import GenerosInput from "../components/GenerosInput"
 import Playlist from "../components/Playlist"
 import LoadingMessage from "../components/LoadingMessage"
 import { useUserContext } from "../contex/UserContext"
-import { getAccessToken, getRecommendations, getUserProfile } from "../api/musicApi"
+import { getAccessToken, getMoodsFromText, getRecommendations, getUserProfile } from "../api/musicApi"
 
 import { FaUser } from "react-icons/fa"
 import "../styles/Chat.css"
 import { useState, useEffect, useRef } from "react"
+import Moods from "../components/Moods"
 
 export default function Chat() {
   const [input, setInput] = useState("")
   const [messages, setMessages] = useState([])
   const [loading, setLoading] = useState(false)
+  const [ moodsResponse, setMoodsResponse] = useState({})
 
   const links = [{ path: "/profile", label: "", icon: <FaUser /> }]
 
@@ -51,12 +53,12 @@ export default function Chat() {
 
     // adiciona mensagem do usuário
     setMessages((prev) => [...prev, { text: input, sender: "user" }])
-
     setInput("")
-
-    //setLoading(true)
-    //const playlist = await getRecommendations(input, user.selectedGenres)
-    //setLoading(false)
+    setLoading(true)
+    const response = await getMoodsFromText(input)
+    setMoodsResponse(response)
+    updateUser({ hasSentText: true })
+    setLoading(false)
   }
 
   // Mockando uma playlist para demonstração
@@ -138,8 +140,9 @@ export default function Chat() {
             <h3>{msg.text}</h3>
           </div>
         ))}
-        {loading && <LoadingMessage text="Entendendo seu humor e preparando suas recomendações musicais" />}
-        {user.hasSelectedGenres && <Playlist playlist={playlist} />}
+        {loading && <LoadingMessage text="Analisando seu texto..." />}
+        {user.hasSentText && <Moods moods={moodsResponse.moods} />}
+        {false && <Playlist playlist={playlist} />}
         {/* Âncora de scroll */}
         <div ref={bottomRef} />
       </div>
@@ -149,10 +152,10 @@ export default function Chat() {
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          disabled={!user.hasSelectedGenres}
+          disabled={!user.hasSelectedGenres || user.hasSentText}
         />
         <button type="submit" 
-                disabled={!user.hasSelectedGenres}>
+                disabled={!user.hasSelectedGenres || user.hasSentText}>
           Enviar
         </button>
       </form>
