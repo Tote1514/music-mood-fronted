@@ -1,6 +1,6 @@
 import "../styles/Playlist.css"
 
-import { createPlaylist } from "../api/musicApi"
+import { getRecommendations } from "../api/musicApi"
 import LoadingMessage from "./LoadingMessage"
 
 import { useState } from "react"
@@ -11,9 +11,8 @@ export default function Moods({ moods = [] }) {
     const handleCreateRecommendations = async () => {
         try {
             setLoading(true);
-
-            // futuramente:
-            // await createPlaylist(moods)
+            const tracks = await getRecommendations(moods);
+            console.log("Recomendações recebidas:", tracks);
 
         } catch (error) {
             console.error("Erro ao criar recomendações:", error);

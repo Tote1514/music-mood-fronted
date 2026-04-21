@@ -1,10 +1,10 @@
-export async function getRecommendations(moodText, genres){
+export async function getRecommendations(moods){
     const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/recommendations`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ moodText, genres }),
+        body: JSON.stringify({ moods }),
     });
 
     if (!response.ok) {
@@ -12,7 +12,7 @@ export async function getRecommendations(moodText, genres){
     }
 
     const data = await response.json();
-    return data.recommendations;
+    return data.tracks;
 }
 
 export async function getUserProfile() {

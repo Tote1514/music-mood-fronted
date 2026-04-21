@@ -142,7 +142,7 @@ export default function Chat() {
         ))}
         {loading && <LoadingMessage text="Analisando seu texto..." />}
         {user.hasSentText && <Moods moods={moodsResponse.moods} />}
-        {false && <Playlist playlist={playlist} />}
+        {true && <Playlist playlist={playlist} />}
         {/* Âncora de scroll */}
         <div ref={bottomRef} />
       </div>
