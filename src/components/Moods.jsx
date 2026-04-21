@@ -1,24 +1,13 @@
 import "../styles/Playlist.css"
 
-import { getRecommendations } from "../api/musicApi"
-import LoadingMessage from "./LoadingMessage"
-
 import { useState } from "react"
 
-export default function Moods({ moods = [] }) {
+export default function Moods({ moods = [], onRecommend }) {
     const [loading, setLoading] = useState(false);
 
     const handleCreateRecommendations = async () => {
-        try {
-            setLoading(true);
-            const tracks = await getRecommendations(moods);
-            console.log("Recomendações recebidas:", tracks);
-
-        } catch (error) {
-            console.error("Erro ao criar recomendações:", error);
-        } finally {
-            setLoading(false);
-        }
+        setLoading(true);
+        await onRecommend(moods);
     }
 
     return (
@@ -29,7 +18,6 @@ export default function Moods({ moods = [] }) {
                 {moods.length === 0 ? (
                     <p>
                         Não consegui identificar seu humor. 
-                        Tente escrever de outra forma.
                     </p>
                 ) : (
                     <p>
@@ -44,15 +32,11 @@ export default function Moods({ moods = [] }) {
 
                 <button 
                     onClick={handleCreateRecommendations} 
-                    disabled={loading || moods.length === 0}
+                    disabled={loading}
                 >
                     Me dá recomendações
                 </button>
             </div>
-
-            {loading && (
-                <LoadingMessage text="Criando sugestões de músicas..." />
-            )}
         </>
     )
 }

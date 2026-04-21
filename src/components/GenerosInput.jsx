@@ -8,12 +8,26 @@ export default function GenerosInput() {
   const { user, updateUser } = useUserContext();
   const displayName = user.name || "amigo";
   const generos = [
-    { value: "rock", label: "Rock" },
     { value: "pop", label: "Pop" },
+    { value: "rock", label: "Rock" },
+    { value: "hip hop", label: "Hip Hop" },
+    { value: "r-n-b", label: "R&B" },
+    { value: "indie", label: "Indie" },
+    { value: "electronic", label: "Electronica" },
     { value: "jazz", label: "Jazz" },
-    { value: "classical", label: "Classical" },
-    { value: "hiphop", label: "Hip Hop" },
-    { value: "electronic", label: "Electronic" },
+    { value: "acoustic", label: "Acústica" },
+    { value: "classical", label: "Música Clássica" },
+    { value: "funk", label: "Funk" },
+    { value: "mpb", label: "MPB" },
+    { value: "samba", label: "Samba" },
+    { value: "sertanejo", label: "Sertanejo" },
+    { value: "pagode", label: "Pagode" },
+    { value: "forro", label: "Forró" },
+    { value: "latin", label: "Latina" },
+    { value: "reggaeton", label: "Reggaeton" },
+    { value: "reggae", label: "Reggae" },
+    { value: "soul", label: "Soul" },
+    { value: "alt-rock", label: "Rock Alternativo" },
   ];
   
   const [generosSelected, setGenerosSelected] = useState([]);
@@ -25,7 +39,6 @@ export default function GenerosInput() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(generosSelected);
     updateUser({ generos: generosSelected, hasSelectedGenres: true });
     resetSelection();
   };
@@ -40,7 +53,14 @@ export default function GenerosInput() {
         <h2>Pra começar, quais estilos musicais você mais gosta de ouvir, {displayName}? 🎧</h2>
         {user.hasSelectedGenres ?
           (user.generos.length > 0 ?
-            <p>Gêneros selecionados🎵 : {user.generos.join(", ")}</p>
+           <p>
+            Gêneros selecionados 🎵:{" "}
+            {user.generos
+              .map((genero) => 
+                generos.find((g) => g.value === genero)?.label || genero
+              )
+              .join(", ")}
+            </p>
             : <p>Nenhum gênero selecionado.</p>)
           :
         <Select

@@ -14,13 +14,14 @@ export default function Chat() {
   const [input, setInput] = useState("")
   const [messages, setMessages] = useState([])
   const [loading, setLoading] = useState(false)
-  const [ moodsResponse, setMoodsResponse] = useState({})
+  const [moodsResponse, setMoodsResponse] = useState({})
+  const [tracks, setTracks] = useState([])
+  const [loadingTracks, setLoadingTracks] = useState(false)
 
   const links = [{ path: "/profile", label: "", icon: <FaUser /> }]
 
   const { updateUser, user } = useUserContext()
   const bottomRef = useRef(null);
-
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -55,74 +56,27 @@ export default function Chat() {
     setMessages((prev) => [...prev, { text: input, sender: "user" }])
     setInput("")
     setLoading(true)
+
     const response = await getMoodsFromText(input)
+    
     setMoodsResponse(response)
     updateUser({ hasSentText: true })
     setLoading(false)
   }
 
-  // Mockando uma playlist para demonstração
-  const playlist = [
-    { name:"Palavras No Corpo",
-      artist:"Gal Costa",
-      albumCover:"https://i.scdn.co/image/ab67616d0000485149c56bae9ff226e14a6463df",
-      url : "https://open.spotify.com/track/4xeP4rHORzLbJlaJVHWybQ"
-    },
-    {
-      name:"Só Louco",
-      artist:"Gal Costa",
-      albumCover:"https://i.scdn.co/image/ab67616d00004851d940f0bee97f370629880123",
-      url : "https://open.spotify.com/track/2bLx1WMPGQKDme8WdGfpIs"
-    },
-    {
-      name: "Maçã",
-      artist: "Djavan",
-      albumCover: "https://i.scdn.co/image/ab67616d000048517064b0c1e363cd14a0f34205",
-      url : "https://open.spotify.com/track/4INDXtb5SbTP5ATwE5BEwr"
-    },
-    {
-      name: "Gostoso Demais",
-      artist: "Maria Bethânia",
-      albumCover: "https://i.scdn.co/image/ab67616d00004851e4a0614c3363bb5243943625",
-      url : "https://open.spotify.com/track/7FplawKc9l5GVtFS1IXK6D"
-    },
-    {
-      name: "Numa sala de reboco",
-      artist: "Luiz Gonzaga",
-      albumCover: "https://i.scdn.co/image/ab67616d00004851360fea7a74ca6d7c299f50ce",
-      url : "https://open.spotify.com/track/7q6zyz40cyqctGM446Q5MQ"
-    },
-    {
-      name: "O Trem Azul",
-      artist: "Lô Borges",
-      albumCover: "https://i.scdn.co/image/ab67616d0000485136ebd83756dae33f2504dc40",
-      url : "https://open.spotify.com/track/0lq9TEXMVVSDcaj1azH6Po"
-    },
-    {
-      name: "Eternamente",
-      artist: "Gal Costa",
-      albumCover: "https://i.scdn.co/image/ab67616d00004851e23d92dee8de17a0680bb278",
-      url : "https://open.spotify.com/track/1ngbz6irbfEmpsYcZhzX6L"
-    },
-    {
-      name: "Mutante",
-      artist: "Rita Lee",
-      albumCover: "https://i.scdn.co/image/ab67616d0000485100369fc7d9da78f863b28e6c",
-      url : "https://open.spotify.com/track/5rShS5dwU8nIe21jlQnbxK"
-    },
-    {
-      name: "Tenha calma",
-      artist: "Maria Bethânia",
-      albumCover: "https://i.scdn.co/image/ab67616d0000485145b46596d237c0707a3440e3",
-      url : "https://open.spotify.com/track/6pSGoOZ03OYjHuXhgSqsi6"
-    },
-    {
-      name: "Azul",
-      artist: "Gal Costa",
-      albumCover: "https://i.scdn.co/image/ab67616d0000485126b451720e2bed283f0c63da",
-      url : "https://open.spotify.com/track/6VeAUISn8bNaW4OUa2oWi2"
-    }
-  ]
+
+  const handleGetRecommendations = async () => {
+      try {
+        setLoadingTracks(true)
+        const tracks = await getRecommendations(moodsResponse.moods)
+        console.log("Recomendações recebidas:", tracks)
+        setTracks(tracks || [])
+      } catch (error) {
+          console.error("Erro ao criar recomendações:", error);
+      } finally {
+          setLoadingTracks(false);
+      }
+  }
 
   return (
     <div>
@@ -133,7 +87,7 @@ export default function Chat() {
           <div className="message bot">
             <h3>E hoje, como você está se sentindo? Pode falar do seu jeito 🙂</h3>
           </div>
-          )}
+        )}
         {messages.map((msg, index) => (
           <div key={index} 
                 className={`message ${msg.sender}`}>
@@ -141,8 +95,19 @@ export default function Chat() {
           </div>
         ))}
         {loading && <LoadingMessage text="Analisando seu texto..." />}
-        {user.hasSentText && <Moods moods={moodsResponse.moods} />}
-        {true && <Playlist playlist={playlist} />}
+        {user.hasSentText && (
+          <Moods 
+            moods={moodsResponse.moods} 
+            onRecommend={handleGetRecommendations}
+          />
+        )}
+        {loadingTracks && (
+          <LoadingMessage text="Criando sugestões de músicas..." />
+        )}
+
+        {tracks.length > 0 && (
+          <Playlist playlist={tracks} />
+        )}
         {/* Âncora de scroll */}
         <div ref={bottomRef} />
       </div>

@@ -10,6 +10,7 @@
 .react-select-container {
     width: 100%;
     color : black;
+    scrollbar-color: white white;
 }
 
 .message.generos-input button {
